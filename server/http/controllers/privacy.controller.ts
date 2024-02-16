@@ -4,9 +4,6 @@ import ProcessManagerService from '../../services/process-manager.service';
 import { FastifyRequest } from 'fastify';
 import { EnsureConnectionIdValidationQuerystring } from '../validations/connection/ensure-connection-id.validation';
 import { respondJSend } from '../../common/jsend';
-import { CheckNumberValidationBody } from '../validations/misc/check-number.validation';
-import { GetStatusValidationBody } from '../validations/misc/get-status.validation';
-import { GetProfilePictureValidationBody } from '../validations/misc/get-profile-picture.validation';
 import { UpdateLastSeenSettingValidationBody } from '../validations/privacy/update-last-seen-setting.validation';
 
 @injectable()

@@ -1,6 +1,7 @@
 import * as yup from 'yup';
 import { InferType } from 'yup';
 import { ConnectionWebHooks } from '../../../../shared/webhooks/types';
+
 export const AddConnectionHooksValidation = {
   body: yup.object({
     hooks: yup

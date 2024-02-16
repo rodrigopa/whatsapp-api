@@ -1,5 +1,4 @@
 import Redis from 'ioredis';
-import { InfoConnectionResponse } from '../model/response/connection.responses';
 import { inject, injectable } from 'tsyringe';
 import { ConnectionStatus } from '../model/models/connection.models';
 

@@ -1,32 +1,9 @@
-import { FastifyPluginAsync, FastifyRequest } from 'fastify';
+import { FastifyPluginAsync } from 'fastify';
 import { container } from 'tsyringe';
-import { ConnectionController } from '../controllers/connection.controller';
 import {
   EnsureConnectionIdValidation,
   EnsureConnectionIdValidationQuerystring,
 } from '../validations/connection/ensure-connection-id.validation';
-import { MessageController } from '../controllers/message.controller';
-import {
-  GetStatusValidation,
-  GetStatusValidationBody,
-} from '../validations/misc/get-status.validation';
-import { MiscController } from '../controllers/misc.controller';
-import {
-  CheckNumberValidation,
-  CheckNumberValidationBody,
-} from '../validations/misc/check-number.validation';
-import {
-  GetProfilePictureValidation,
-  GetProfilePictureValidationBody,
-} from '../validations/misc/get-profile-picture.validation';
-import {
-  GetBusinessProfileValidation,
-  GetBusinessProfileValidationBody,
-} from '../validations/misc/get-business-profile.validation';
-import {
-  PresenceSubscribeValidation,
-  PresenceSubscribeValidationBody,
-} from '../validations/misc/presence-subscribe.validation';
 import { PrivacyController } from '../controllers/privacy.controller';
 import {
   UpdateLastSeenSettingValidation,

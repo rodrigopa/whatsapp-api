@@ -1,6 +1,5 @@
-import { FastifyPluginAsync, FastifyRequest } from 'fastify';
+import { FastifyPluginAsync } from 'fastify';
 import { container } from 'tsyringe';
-import { ConnectionController } from '../controllers/connection.controller';
 import {
   EnsureConnectionIdValidation,
   EnsureConnectionIdValidationQuerystring,

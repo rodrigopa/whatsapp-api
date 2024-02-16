@@ -22,7 +22,7 @@ import { StartConnectionValidationBody } from '../validations/connection/start-c
 import { EnsureConnectionIdValidationQuerystring } from '../validations/connection/ensure-connection-id.validation';
 import QR from 'yaqrcode';
 import { dispatchWebhook } from '../../../shared/webhooks';
-import { ConnectionWebHook, ConnectionWebHooks } from '../../../shared/webhooks/types';
+import { ConnectionWebHooks } from '../../../shared/webhooks/types';
 import {
   AddConnectionHooksValidationBody,
   RemoveConnectionHooksValidationBody,

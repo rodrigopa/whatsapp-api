@@ -1,6 +1,5 @@
 import * as yup from 'yup';
 import { InferType } from 'yup';
-import { ConnectionWebHooks } from '../../../../shared/webhooks/types';
 
 export const ChangeWebhookURLConnectionValidation = {
   body: yup.object({

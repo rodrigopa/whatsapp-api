@@ -1,10 +1,7 @@
 import pm2 from 'pm2-promise';
 import { execShellCommand } from '../common/execShellCommand';
-import { WATextMessage } from '@whiskeysockets/baileys';
 import { singleton } from 'tsyringe';
-import axon, { ReqSocket, Socket, socket } from 'axon';
 import BeeQueue from 'bee-queue';
-import { FastifyReply } from 'fastify/types/reply';
 
 @singleton()
 export default class ProcessManagerService {
