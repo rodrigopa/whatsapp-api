@@ -8,16 +8,7 @@ import { FastifyReply } from 'fastify/types/reply';
 
 @singleton()
 export default class ProcessManagerService {
-  private sockets: Record<string, Socket>;
-
   constructor() {}
-
-  async startSocket(connectionId: string) {
-    // this.socket.bind(`unix:///usr/src/app/shared/sockets/${connectionId}`);
-    // this.sockets[connectionId] = this.sockets.bind
-  }
-
-  async startBus() {}
 
   async start(id: string) {
     await pm2.connect();
