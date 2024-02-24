@@ -5,7 +5,6 @@ export const TextMessageValidation = {
   body: yup.object({
     destination: yup.string().required(),
     text: yup.string().required(),
-    forward: yup.boolean().default(false),
   }),
 };
 

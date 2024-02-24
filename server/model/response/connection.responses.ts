@@ -34,6 +34,8 @@ export type InfoConnectionResponse = {
   webhookURL: string;
   status: ConnectionStatus;
   qrCode?: string;
+  phone?: string;
+  devicePlatform?: string;
 };
 
 export type ListConnectionsResponse = {

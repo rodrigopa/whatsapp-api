@@ -136,6 +136,8 @@ export class ConnectionController {
       webhookURL: info.webhookURL,
       hooks: info.hooks,
       status: info.status,
+      devicePlatform: info.devicePlatform,
+      phone: info.phone,
     });
   }
 

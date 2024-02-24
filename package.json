@@ -6,18 +6,19 @@
   "scripts": {
     "build": "tsc",
     "dev": "npm run dev:server",
-    "dev:server": "ts-node-dev server/index.ts"
+    "dev:server": "ts-node-dev server/index.ts",
+    "postinstall": "patch-package"
   },
   "dependencies": {
-    "@types/axon": "^2.0.5",
     "@whiskeysockets/baileys": "^6.6.0",
-    "axon": "^2.0.3",
     "bee-queue": "^1.7.1",
     "fastify": "^4.26.1",
     "fastify-multer": "^2.0.3",
     "fastify-plugin": "^4.5.1",
     "ioredis": "^5.3.2",
+    "link-preview-js": "^3.0.5",
     "node-cache": "^5.1.2",
+    "patch-package": "^8.0.0",
     "pm2": "^5.3.1",
     "pm2-promise": "^2.0.1",
     "poetic": "^1.7.0",

@@ -16,6 +16,7 @@ export abstract class ConnectionWebHookMapper {
   abstract connection_title_changed: (params: { id: string; title: string }) => void;
   abstract message_received: (params: { id: string; message: WAMessage }) => void;
   abstract presence_updated: (params: { [participant: string]: PresenceData }) => void;
+  abstract payment_received: (params: { id: string }) => void;
 }
 
 export const ConnectionWebHooks = [

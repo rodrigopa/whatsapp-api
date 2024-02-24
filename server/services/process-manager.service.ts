@@ -12,6 +12,8 @@ export default class ProcessManagerService {
     await pm2.start({
       name: id,
       script: '/usr/src/app/connection/index.ts',
+      watch: true,
+      ignore_watch: ['/usr/src/app/connection/store'],
       interpreter: '/usr/src/app/node_modules/.bin/ts-node',
       stop_exit_codes: '0',
       env: {
@@ -24,7 +26,7 @@ export default class ProcessManagerService {
 
   async startAsync(id: string) {
     execShellCommand(
-      `CONNECTION_ID=${id} pm2 start /usr/src/app/connection/index.ts --name ${id} --interpreter /usr/src/app/node_modules/.bin/ts-node --stop-exit-codes 0`,
+      `CONNECTION_ID=${id} pm2 start /usr/src/app/connection/index.ts --name ${id} --interpreter /usr/src/app/node_modules/.bin/ts-node --stop-exit-codes 0 --watch --ignore-watch connection/store`,
     ).then(() => {
       execShellCommand(`pm2 save`);
     });

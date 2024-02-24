@@ -3,7 +3,6 @@ import { InferType } from 'yup';
 
 export const UpdateLastSeenSettingValidation = {
   body: yup.object({
-    jid: yup.string().required(),
     value: yup
       .string()
       .required()

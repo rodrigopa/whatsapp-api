@@ -1,9 +1,10 @@
-import { BaileysEventMap, DisconnectReason } from '@whiskeysockets/baileys';
+import { BaileysEventMap, DisconnectReason, WASocket } from '@whiskeysockets/baileys';
 import { redis } from '../../shared/redis';
 import { dispatchWebhook } from '../../shared/webhooks';
 
 export default function onConnectionUpdate(
   connectionId: string,
+  waSocket: WASocket,
   startSocket: Function,
   removeAll: () => Promise<void>,
   subscribe: Function,
@@ -23,6 +24,9 @@ export default function onConnectionUpdate(
         });
         startSocket();
       } else {
+        await dispatchWebhook(connectionId, 'connection_logout', {
+          id: connectionId,
+        });
         await removeAll();
         process.exit(1);
       }
@@ -30,6 +34,12 @@ export default function onConnectionUpdate(
       subscribe();
       redis.hdel(`connection_${connectionId}`, 'qrCode');
       redis.hset(`connection_${connectionId}`, 'status', 'connected');
+      redis.hset(
+        `connection_${connectionId}`,
+        'devicePlatform',
+        waSocket.authState.creds.platform ?? '',
+      );
+      redis.hset(`connection_${connectionId}`, 'phone', waSocket.authState.creds.me?.id ?? '');
       dispatchWebhook(connectionId, 'connection_status_changed', {
         id: connectionId,
         status: 'connected',

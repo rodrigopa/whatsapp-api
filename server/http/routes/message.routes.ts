@@ -40,6 +40,14 @@ import {
   UpdateMessageValidation,
   UpdateMessageValidationBody,
 } from '../validations/message/update-message.validation';
+import {
+  LocationMessageValidation,
+  LocationMessageValidationBody,
+} from '../validations/message/location-message.validation';
+import {
+  RequestPaymentMessageValidation,
+  RequestPaymentMessageValidationBody,
+} from '../validations/message/request-payment-message.validation';
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage, limits: { fileSize: 1024 * 1024 * 10 } });
@@ -155,6 +163,28 @@ const messageRoutes: FastifyPluginAsync = async (server) => {
       schema: { ...EnsureConnectionIdValidation, ...UpdateMessageValidation },
     },
     (request, reply) => controller.updateMessage(request, reply),
+  );
+
+  server.post<{
+    Querystring: EnsureConnectionIdValidationQuerystring;
+    Body: LocationMessageValidationBody;
+  }>(
+    '/message/sendLocation',
+    {
+      schema: { ...EnsureConnectionIdValidation, ...LocationMessageValidation },
+    },
+    (request, reply) => controller.sendLocation(request, reply),
+  );
+
+  server.post<{
+    Querystring: EnsureConnectionIdValidationQuerystring;
+    Body: RequestPaymentMessageValidationBody;
+  }>(
+    '/message/sendRequestPayment',
+    {
+      schema: { ...EnsureConnectionIdValidation, ...RequestPaymentMessageValidation },
+    },
+    (request, reply) => controller.sendRequestPayment(request, reply),
   );
 };
 

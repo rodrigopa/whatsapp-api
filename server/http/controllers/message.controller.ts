@@ -12,6 +12,8 @@ import { MediaFromURLMessageValidationBody } from '../validations/message/media-
 import { ReactMessageValidationBody } from '../validations/message/react-message.validation';
 import { DeleteMessageValidationBody } from '../validations/message/delete-message.validation';
 import { UpdateMessageValidationBody } from '../validations/message/update-message.validation';
+import { LocationMessageValidationBody } from '../validations/message/location-message.validation';
+import { RequestPaymentMessageValidationBody } from '../validations/message/request-payment-message.validation';
 
 @injectable()
 export class MessageController {
@@ -33,7 +35,6 @@ export class MessageController {
       {
         destination: request.body.destination,
         text: request.body.text,
-        forward: request.body.forward,
       },
     );
   }
@@ -52,7 +53,6 @@ export class MessageController {
         destination: request.body.destination,
         text: request.body.text,
         image: request.file.buffer!.toString('base64'),
-        forward: request.body.forward,
       },
     );
   }
@@ -89,6 +89,41 @@ export class MessageController {
         destination: request.body.destination,
         audio: request.file.buffer!.toString('base64'),
         ptt: request.body.ptt,
+      },
+    );
+  }
+
+  public async sendLocation(
+    request: FastifyRequest<{
+      Querystring: EnsureConnectionIdValidationQuerystring;
+      Body: LocationMessageValidationBody;
+    }>,
+    reply,
+  ) {
+    this.processManagerService.sendMessageToConnection(
+      request.query.connectionId,
+      'sendLocationMessage',
+      {
+        destination: request.body.destination,
+        latitude: request.body.latitude,
+        longitude: request.body.longitude,
+      },
+    );
+  }
+
+  public async sendRequestPayment(
+    request: FastifyRequest<{
+      Querystring: EnsureConnectionIdValidationQuerystring;
+      Body: RequestPaymentMessageValidationBody;
+    }>,
+    reply,
+  ) {
+    this.processManagerService.sendMessageToConnection(
+      request.query.connectionId,
+      'sendRequestPaymentMessage',
+      {
+        destination: request.body.destination,
+        amount: request.body.amount,
       },
     );
   }
